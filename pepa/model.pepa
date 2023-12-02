@@ -1,0 +1,26 @@
+k = 100;
+gamma = 0.00083;
+beta = 0.314;
+omegaA = 50;
+omegaB = 40;
+
+k_gamma = k*gamma;
+omegaA_gamma = omegaA*gamma;
+omegaB_gamma = omegaB*gamma;
+
+EF = (mEF, k_gamma).VEF + (mS2A, infty).VESA + (mS2B, infty).VESB;
+VEF = (vEF, beta).EF + (mEF, gamma).VEF;
+VESA = (vSA, beta).EF + (mS2A, infty).VESA;
+VESB = (vSB, beta).EF + (mS2B, infty).VESB;
+
+MSA = (mS1A, omegaA_gamma).CA + (mEF, infty).VSAF + (mS2B, infty).VSAS;
+CA = (mS2A, omegaA_gamma).MSA + (mEF, infty).VSAF + (mS2B, infty).VSAS;
+VSAF = (vEF, beta).MSA + (mEF, infty).VSAF;
+VSAS = (vSB, beta).MSA + (mS2B, infty).VSAS;
+
+MSB = (mS1B, omegaB_gamma).CB + (mEF, infty).VSBF + (mS2A, infty).VSBS;
+CB = (mS2B, omegaB_gamma).MSB + (mEF, infty).VSBF + (mS2A, infty).VSBS;
+VSBF = (vEF, beta).MSB + (mEF, infty).VSBF;
+VSBS = (vSA, beta).MSB + (mS2A, infty).VSBS;
+
+EF <mEF,mS2B,mS2A,vEF,vSA,vSB> (MSA <mEF,mS2A,mS2B,vEF> MSB)
