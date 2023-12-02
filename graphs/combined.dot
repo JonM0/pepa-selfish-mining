@@ -1,0 +1,63 @@
+digraph {
+    node [shape = ellipse; fontname = Arial;];
+    edge [fontname = Arial; arrowhead = vee; color = gray;];
+    
+    subgraph {
+        rank = same;
+        EF_MSA_MSB;
+    }
+    
+    subgraph {
+        rank = same;
+        EF_CA_MSB;
+        EF_MSA_CB;
+    }
+    
+    subgraph {
+        rank = same;
+        EF_CA_CB;
+    }
+    
+    subgraph {
+        rank = same;
+        VESA_MSA_VSBS;
+        VESB_VSAS_MSB;
+    }
+    
+    subgraph {
+        rank = same;
+        VESA_CA_VSBS;
+        VESB_VSAS_CB;
+    }
+    
+    EF_MSA_MSB -> VEF_VSAF_VSBF [label = "(mEF, k*&gamma;)";];
+    EF_MSA_MSB -> EF_CA_MSB [label = "(mS1A, &omega;A*&gamma;)";];
+    EF_MSA_MSB -> EF_MSA_CB [label = "(mS1B, &omega;B*&gamma;)";];
+    
+    EF_CA_CB -> VEF_VSAF_VSBF [label = "(mEF, k*&gamma;)";];
+    EF_CA_CB -> VESA_MSA_VSBS [label = "(mS2A, &omega;A*&gamma;)";];
+    EF_CA_CB -> VESB_VSAS_MSB [label = "(mS2B, &omega;B*&gamma;)";];
+    
+    EF_CA_MSB -> VEF_VSAF_VSBF [label = "(mEF, k*&gamma;)";];
+    EF_CA_MSB -> VESA_MSA_VSBS [label = "(mS2A, &omega;A*&gamma;)";];
+    EF_CA_MSB -> EF_CA_CB [label = "(mS1B, &omega;B*&gamma;)";];
+    
+    EF_MSA_CB -> VEF_VSAF_VSBF [label = "(mEF, k*&gamma;)";];
+    EF_MSA_CB -> VESB_VSAS_MSB [label = "(mS2B, &omega;B*&gamma;)";];
+    EF_MSA_CB -> EF_CA_CB [label = "(mS1A, &omega;A*&gamma;)";];
+    
+    VESA_MSA_VSBS -> EF_MSA_MSB [label = "(vSA, &beta;)";];
+    VESA_MSA_VSBS -> VESA_CA_VSBS [label = "(mS1A, &omega;A*&gamma;)";];
+    
+    VESB_VSAS_MSB -> EF_MSA_MSB [label = "(vSB, &beta;)";];
+    VESB_VSAS_MSB -> VESB_VSAS_CB [label = "(mS1B, &omega;B*&gamma;)";];
+    
+    VESA_CA_VSBS -> EF_CA_MSB [label = "(vSA, &beta;)";];
+    VESA_CA_VSBS -> VESA_MSA_VSBS [label = "(mS2A, &omega;A*&gamma;)";];
+    
+    VESB_VSAS_CB -> EF_MSA_CB [label = "(vSB, &beta;)";];
+    VESB_VSAS_CB -> VESB_VSAS_MSB [label = "(mS2B, &omega;B*&gamma;)";];
+    
+    VEF_VSAF_VSBF -> EF_MSA_MSB [label = "(vEF, &beta;)";];
+    VEF_VSAF_VSBF -> VEF_VSAF_VSBF [label = "(mEF, k*&gamma;)";];
+}

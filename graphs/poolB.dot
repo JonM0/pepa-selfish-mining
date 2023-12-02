@@ -1,0 +1,18 @@
+digraph {
+    node [shape = ellipse; fontname = Arial;];
+    edge [fontname = Arial; arrowhead = vee; color=gray;];
+
+    MSB -> VSBF [label = "(mEF, &tau;)";];
+    MSB -> VSBS [label = "(mS2A, &tau;)";];
+    MSB -> CB [label = "(mS1B, &omega;B*&gamma;)";];
+
+    VSBF -> MSB [label = "(vEF, &beta;)";];
+    VSBF -> VSBF [label = "(mEF, &tau;)";];
+
+    VSBS -> MSB [label = "(vSA, &beta;)";];
+    VSBS -> VSBS [label = "(mS2A, &tau;)";];
+
+    CB -> MSB [label = "(mS2B, &omega;B*&gamma;)";];
+    CB -> VSBF [label = "(mEF, &tau;)";];
+    CB -> VSBS [label = "(mS2A, &tau;)";];
+}
