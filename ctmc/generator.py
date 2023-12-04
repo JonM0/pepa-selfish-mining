@@ -1,4 +1,5 @@
 from sage.all_cmdline import *   # import sage library
+from ctmc.vars import *
 
 
 def make_generator_matrix(m):
@@ -10,8 +11,6 @@ def make_generator_matrix(m):
 
     return g
 
-
-k, gamm, beta, omegaA, omegaB = var('k γ β ωA ωB')
 
 transition = Matrix([[0, k*gamm, omegaA*gamm, omegaB*gamm, 0, 0, 0, 0, 0],
                      [beta, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -33,5 +32,3 @@ for i in range(cols):
     g[-1, i] = 1
 
 pi = g.solve_right(vector([0, 0, 0, 0, 0, 0, 0, 0, 1]))
-                           
-# print(pi)
