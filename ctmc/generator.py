@@ -1,34 +1,28 @@
 from sage.all_cmdline import *   # import sage library
-from ctmc.vars import *
 
 
-def make_generator_matrix(m):
-    rows, _ = m.dimensions()
-    g = Matrix(m)
+def make_generator_matrix(tr_m):
+    rows, cols = tr_m.dimensions()
+    assert rows == cols
+
+    g = Matrix(tr_m)
 
     for i in range(rows):
-        g[i, i] = -sum(*m[i, :])
+        g[i, i] = -sum(*tr_m[i, :])
 
     return g
 
 
-transition = Matrix([[0, k*gamm, omegaA*gamm, omegaB*gamm, 0, 0, 0, 0, 0],
-                     [beta, 0, 0, 0, 0, 0, 0, 0, 0],
-                     [0, k*gamm, 0, 0, omegaA*gamm, omegaB*gamm, 0, 0, 0],
-                     [0, k*gamm, 0, 0, 0, omegaA*gamm, omegaB*gamm, 0, 0],
-                     [beta, 0, 0, 0, 0, 0, 0, omegaA*gamm, 0],
-                     [0, k*gamm, 0, 0, omegaA*gamm, 0, omegaB*gamm, 0, 0],
-                     [beta, 0, 0, 0, 0, 0, 0, 0, omegaB*gamm],
-                     [0, 0, beta, 0, omegaA*gamm, 0, 0, 0, 0],
-                     [0, 0, 0, beta, 0, 0, omegaB*gamm, 0, 0]])
+def find_steady_state_distribution(gen_m):
+    rows, cols = gen_m.dimensions()
+    assert rows == cols
 
-rows, cols = transition.dimensions()
+    gen_m = gen_m.T
 
-generator = make_generator_matrix(transition)
+    for i in range(cols):
+        gen_m[-1, i] = 1
 
-g = generator.T
+    b = zero_vector(cols)
+    b[-1] = 1
 
-for i in range(cols):
-    g[-1, i] = 1
-
-pi = g.solve_right(vector([0, 0, 0, 0, 0, 0, 0, 0, 1]))
+    return gen_m.solve_right(b)
