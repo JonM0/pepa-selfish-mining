@@ -1,6 +1,6 @@
 digraph {
-    node [shape = ellipse; fontname = Arial;];
-    edge [fontname = Arial; arrowhead = vee; color=gray;];
+    node [shape = ellipse; fontname = Roboto;];
+    edge [fontname = Roboto; arrowhead = vee; color=gray;];
 
     
     EF -> VEF [label = "(mEF, k*&gamma;)";];
