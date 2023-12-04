@@ -59,5 +59,5 @@ digraph {
     VESB_VSAS_CB -> VESB_VSAS_MSB [label = "(mS2B, &omega;B*&gamma;)";];
     
     VEF_VSAF_VSBF -> EF_MSA_MSB [label = "(vEF, &beta;)";];
-    VEF_VSAF_VSBF -> VEF_VSAF_VSBF [label = "(mEF, k*&gamma;)";];
+    VEF_VSAF_VSBF -> VEF_VSAF_VSBF [label = "(mEF, &gamma;)";];
 }
